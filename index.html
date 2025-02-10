@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symmetry - Smart Infrastructure</title>
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Sora & Audiowide fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Audiowide&display=swap" rel="stylesheet">
+    <!-- Sora font -->
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Symmetry Logo">
+                <span class="logo-text">Symmetry</span>
+            </div>
+            <nav class="nav">
+                <ul class="menu">
+                    <li><a href="#top">Home</a></li>
+                    <li><a href="#introduction">About</a></li>
+                    <li><a href="#technology">Technology</a></li>
+                    <li><a href="#tokenomics">Tokenomics</a></li>
+                    <li><a href="#roadmap">Roadmap</a></li>
+                </ul>
+                <div class="social-icons">
+                    <!-- Twitter -->
+                    <a href="https://x.com/Symemetry" target="_blank" rel="noopener noreferrer" class="icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    
+                    <!-- Telegram -->
+                    <a href="https://t.me/Symemetry" target="_blank" rel="noopener noreferrer" class="icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.189.719-.962 4.084-1.362 5.584-.168.627-.336 1.215-.505 1.803-.252.873-.479 1.236-.752 1.236-.627 0-1.124-.46-1.748-.902-1.008-.717-1.748-1.236-2.727-1.928-1.193-.85-.419-1.314.26-2.082.177-.2 3.193-2.927 3.252-3.18.007-.032.014-.15-.056-.212-.07-.062-.173-.04-.248-.024-.105.022-1.775 1.13-5.007 3.324-.476.327-.905.487-1.29.477-.425-.01-1.24-.24-1.846-.439-.748-.244-1.34-.374-1.288-.788.027-.216.325-.437.889-.662 3.508-1.524 5.849-2.529 7.023-3.015 3.326-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.14.12.097.153.227.165.333.014.127.027.383.016.593z"/>
+                        </svg>
+                    </a>
+                    
+                    <!-- Dextools -->
+                    <a href="#" class="icon">
+                        <img src="assets/images/dextools.svg" alt="Dextools" />
+                    </a>
+                </div>
+                <button class="action-btn">Connect Wallet</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="top">
+        <div class="hero-content">
+            <!-- 顶部标语 -->
+            <div class="hero-banner">
+                <h2>Smart Infrastructure For A Mass Adoption Future</h2>
+            </div>
+            
+            <!-- 主要内容区域 -->
+            <div class="hero-main">
+                <!-- 左侧内容 -->
+                <div class="hero-left">
+                    <h3>Introduction</h3>
+                    <div class="hero-left-content" id="introduction">
+                        <div class="intro-icon">
+                            <svg viewBox="0 0 24 24">
+                                <!-- 六边形图标 -->
+                                <path d="M12 2L4 7v10l8 5 8-5V7l-8-5zM12 4l6 3.75v7.5L12 19l-6-3.75v-7.5L12 4zM12 6l-4 2.5v5L12 16l4-2.5v-5L12 6z"/>
+                                <!-- 内部连接线 -->
+                                <path d="M12 8l2 1.25v2.5L12 13l-2-1.25v-2.5L12 8z" fill="var(--primary-dark)"/>
+                                <!-- 点缀圆点 -->
+                                <circle cx="12" cy="7" r="0.5"/>
+                                <circle cx="14.5" cy="12" r="0.5"/>
+                                <circle cx="9.5" cy="12" r="0.5"/>
+                                <circle cx="12" cy="17" r="0.5"/>
+                            </svg>
+                        </div>
+                        <div class="intro-text">
+                            <p>Symmetry is a next-generation AI-powered decentralized infrastructure designed to enhance blockchain scalability, security, and efficiency. By integrating Artificial Intelligence (AI) with DePIN (Decentralized Physical Infrastructure Networks), Symmetry optimizes network performance, automates smart contract execution, and enables seamless decentralized node management.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 右侧内容 -->
+                <div class="hero-right">
+                    <div class="hero-right-content">
+                        <div class="hero-right-inner">
+                            <h3>RUN & Manage Nodes</h3>
+                            <p>Easily purchase and manage your Symmetry nodes through our Telegram bot — bringing decentralization and automation to your fingertips.
+                            </p>
+                            <button class="run-node-btn">RUN The Node Now<span class="pointer">→</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="about-header">
+            <h3>The Next-Gen AI-Powered Decentralized Infrastructure
+            </h3>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-header">
+                    <h3>AI-Powered Optimization</h3>
+                </div>
+                <p>Symmetry integrates Artificial Intelligence to continuously optimize network performance, transaction speeds, and smart contract execution. AI adjusts resources in real time, ensuring the system remains efficient and scalable even under high demand.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-header">
+                    <h3>Decentralized Node Management</h3>
+                </div>
+                <p>Through the DePIN model, Symmetry allows users to buy, lease, or manage nodes across a decentralized network. This empowers individuals to contribute to infrastructure growth, while earning rewards through node participation and resource leasing.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <h3>Smart Contract Automation</h3>
+                </div>
+                <p>Symmetry's AI enhances the execution of smart contracts by enabling them to adapt to real-time market conditions. This reduces execution delays, minimizes human intervention, and allows contracts to self-optimize based on current data, ensuring more efficient and responsive operations.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <h3>Scalable and Flexible Infrastructure</h3>
+                </div>
+                <p>The platform's decentralized architecture ensures seamless scalability, allowing Symmetry to grow and adapt as the ecosystem expands. As demand increases, AI-powered systems dynamically adjust resources and node distribution to maintain high performance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Section -->
+    <section class="platform">
+        <section class="why-choose">
+            <h2>Why choose Symmetry</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h3>AI-Driven Efficiency</h3>
+                    <p>Symmetry combines Artificial Intelligence with blockchain to enhance performance across the network. AI dynamically optimizes resource allocation, smart contract execution, and transaction speeds, ensuring a faster, smarter, and more efficient experience.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <h3>Decentralized and Autonomous</h3>
+                    <p>With DePIN integration, Symmetry enables a truly decentralized infrastructure where users can actively participate in node management, earn rewards, and help govern the network. No single entity controls the ecosystem—it's powered by the community.</p>
+                </div>
+    
+                <div class="benefit-card">
+                    <h3>Scalability Without Compromise</h3>
+                    <p>Unlike traditional blockchain networks, Symmetry dynamically adjusts its infrastructure based on usage patterns, ensuring scalability without sacrificing performance or security. The more the network grows, the smarter and more efficient it becomes.</p>
+                </div>
+    
+                <div class="benefit-card">
+                    <h3>Cost-Effective Participation</h3>
+                    <p>Symmetry offers an accessible entry point for global users. With the DePIN model, anyone can easily buy, lease, or manage nodes, providing an opportunity for passive income while contributing to the network's decentralization.</p>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="tech-section" id="technology">
+        <div class="tech-header">
+            <h2>Technology</h2>
+        </div>
+        
+        <div class="tech-features">
+            <div class="tech-feature-card">
+                <div class="tech-icon">
+                    <svg viewBox="0 0 24 24">
+                        <!-- Predictive Analytics Icon -->
+                        <path d="M4 14.899V16c0 1.1.9 2 2 2h2v-6H6c-1.1 0-2 .9-2 2zm10-9c0-1.1-.9-2-2-2h-2v6h2c1.1 0 2-.9 2-2V5.999zm-4 10h4c1.1 0 2-.9 2-2v-1.1c0-1.1-.9-2-2-2h-4v5.1zm9-7.9c-1.1 0-2 .9-2 2v1.1h6v-1.1c0-1.1-.9-2-2-2h-2z"/>
+                    </svg>
+                </div>
+                <h3>Predictive Analytics & Machine Learning (ML)</h3>
+                <p>Symmetry uses predictive analytics to forecast network load and transaction demands. Through time-series analysis and regression models, the platform anticipates congestion and automatically adjusts resources. Supervised learning and unsupervised learning models are also employed to detect anomalies, optimize resource allocation, and manage network health by predicting potential failures or bottlenecks in real-time.</p>
+            </div>
+
+            <div class="tech-feature-card">
+                <div class="tech-icon">
+                    <svg viewBox="0 0 24 24">
+                        <!-- Edge AI Icon -->
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"/>
+                    </svg>
+                </div>
+                <h3>Edge AI for Decentralized Processing</h3>
+                <p>Symmetry implements Edge AI to reduce latency and ensure fast decision-making at the node level. By running AI algorithms at the edge (directly on nodes or close to users), the platform minimizes network congestion and offloads some of the central processing tasks to the individual nodes, improving responsiveness and scalability.</p>
+            </div>
+
+            <div class="tech-feature-card">
+                <div class="tech-icon">
+                    <svg viewBox="0 0 24 24">
+                        <!-- DLT Icon -->
+                        <path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm3 3h6v6H9V9zm1 1v4h4v-4h-4z"/>
+                    </svg>
+                </div>
+                <h3>Distributed Ledger Technology (DLT)</h3>
+                <p>Symmetry uses Distributed Ledger Technology (DLT) to ensure that node data—such as ownership, uptime, location, and status—is securely recorded and shared across the network in a decentralized manner. Every node's performance and transaction history are validated by the network, reducing the risk of centralization and ensuring transparency.</p>
+            </div>
+
+            <div class="tech-feature-card">
+                <div class="tech-icon">
+                    <svg viewBox="0 0 24 24">
+                        <!-- Lifecycle Management Icon -->
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.17-5.24l-1.42-1.42-1.75 1.75V8.83h-2v6.26l-1.75-1.75-1.42 1.42L12 18.84l4.17-4.08z"/>
+                    </svg>
+                </div>
+                <h3>Automated Node Lifecycle Management</h3>
+                <p>AI-driven automation is employed to handle the entire node lifecycle, from deployment to maintenance. Smart contracts are used to automatically provision, update, and retire nodes based on real-time network demand and performance metrics. This includes automated hardware upgrades and rebalancing of resources as the network scales.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tokenomics Section -->
+    <section class="tokenomics" id="tokenomics">
+        <div class="tokenomics-header">
+            <h2>Tokenomics</h2>
+            <p>Symmetry's tokenomics are designed to align the incentives of network participants, ensure the sustainability of the ecosystem, and foster active engagement. At the core of this is the $SYM token, which powers all economic activities within the Symmetry ecosystem.</p>
+        </div>
+        
+        <div class="token-info-container">
+            <!-- Token Basic Info -->
+            <div class="token-basics">
+                <div class="token-basic-card">
+                    <h3>Token Name</h3>
+                    <span class="token-value">$SYM</span>
+                </div>
+                <div class="token-basic-card">
+                    <h3>Total Supply</h3>
+                    <span class="token-value">1,000,000,000 $SYM</span>
+                </div>
+            </div>
+
+            <!-- Token Utilities -->
+            <div class="token-utilities">
+                <h3>Utility of $SYM Token</h3>
+                <div class="utilities-grid">
+                    <div class="utility-card">
+                        <div class="utility-icon">
+                            <svg viewBox="0 0 24 24">
+                                <!-- Staking Icon -->
+                                <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.8L19.2 8 12 11.2 4.8 8 12 4.8zM4 16.5v-7l8 4 8-4v7l-8 4-8-4z"/>
+                            </svg>
+                        </div>
+                        <h4>Staking & Network Security</h4>
+                        <p>Stake $SYM tokens to help secure the network and participate in consensus. In return, earn staking rewards based on your contribution to network stability.</p>
+                    </div>
+                    
+                    <div class="utility-card">
+                        <div class="utility-icon">
+                            <svg viewBox="0 0 24 24">
+                                <!-- Node Management Icon -->
+                                <path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm3 3h6v6H9V9zm1 1v4h4v-4h-4z"/>
+                            </svg>
+                        </div>
+                        <h4>Node Leasing & Management</h4>
+                        <p>Use $SYM to lease, purchase, or manage nodes within the DePIN model. Users can generate passive income by contributing physical infrastructure to the network.</p>
+                    </div>
+                    
+                    <div class="utility-card">
+                        <div class="utility-icon">
+                            <svg viewBox="0 0 24 24">
+                                <!-- Governance Icon -->
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <h4>Governance Participation</h4>
+                        <p>$SYM holders can vote on key network decisions, such as upgrades, protocol changes, and ecosystem development, giving the community full control over the platform's future.</p>
+                    </div>
+                    
+                    <div class="utility-card">
+                        <div class="utility-icon">
+                            <svg viewBox="0 0 24 24">
+                                <!-- Transaction Icon -->
+                                <path d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-7-2h2V7h-4v2h2z"/>
+                            </svg>
+                        </div>
+                        <h4>Transaction & Smart Contract Fees</h4>
+                        <p>$SYM is used to pay for transaction fees and smart contract executions within the Symmetry network, making it essential for all interactions within the ecosystem.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Token Distribution -->
+            <div class="token-distribution">
+                <div class="token-chart">
+                    <img src="assets/images/image6.png" alt="Token Allocation Chart">
+                </div>
+                <div class="token-allocation-info">
+                    <h3>Token Allocation</h3>
+                    <div class="distribution-chart-container">
+                        <div class="distribution-chart">
+                            <!-- 这里将通过JavaScript添加饼图 -->
+                            <canvas id="tokenAllocationChart"></canvas>
+                        </div>
+                        <div class="distribution-legend">
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: var(--accent-green)"></span>
+                                <div class="legend-text">
+                                    <span class="legend-label">Liquidity Pools</span>
+                                    <span class="legend-value">65%</span>
+                                </div>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #4CAF50"></span>
+                                <div class="legend-text">
+                                    <span class="legend-label">Governance & Community</span>
+                                    <span class="legend-value">10%</span>
+                                </div>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #2196F3"></span>
+                                <div class="legend-text">
+                                    <span class="legend-label">Team & Advisors</span>
+                                    <span class="legend-value">5%</span>
+                                </div>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #9C27B0"></span>
+                                <div class="legend-text">
+                                    <span class="legend-label">SYM Node Plan</span>
+                                    <span class="legend-value">15%</span>
+                                </div>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #FF9800"></span>
+                                <div class="legend-text">
+                                    <span class="legend-label">Marketing & Partnerships</span>
+                                    <span class="legend-value">5%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="roadmap" id="roadmap">
+        <div class="roadmap-header">
+            <h2>Roadmap</h2>
+            <p>Symmetry's roadmap highlights key milestones in the development and growth of the platform, ensuring steady progress toward a decentralized, AI-powered blockchain ecosystem.</p>
+        </div>
+        
+        <div class="timeline">
+            <div class="phase">
+                <span class="phase-number">Phase 1</span>
+                <h3>Launch & Foundation</h3>
+                <ul>
+                    <li>Mainnet Go-Live</li>
+                    <li>DePIN Node Deployment</li>
+                    <li>$SYM Token Launch</li>
+                </ul>
+            </div>
+
+            <div class="phase">
+                <span class="phase-number">Phase 2</span>
+                <h3>Ecosystem Growth</h3>
+                <ul>
+                    <li>Smart Contract Integration</li>
+                    <li>Partnerships & Ecosystem Expansion</li>
+                    <li>Governance Activation</li>
+                </ul>
+            </div>
+
+            <div class="phase">
+                <span class="phase-number">Phase 3</span>
+                <h3>AI Enhancements & Interoperability</h3>
+                <ul>
+                    <li>AI-Powered Optimizations</li>
+                    <li>Cross-Chain Integration</li>
+                    <li>DePIN Scaling</li>
+                </ul>
+            </div>
+
+            <div class="phase">
+                <span class="phase-number">Phase 4</span>
+                <h3>Global Expansion & Sustainability</h3>
+                <ul>
+                    <li>Global Marketing Campaign</li>
+                    <li>Sustainability Initiatives</li>
+                    <li>Ecosystem Maturity</li>
+                </ul>
+            </div>
+
+            <div class="phase">
+                <span class="phase-number">Phase 5</span>
+                <h3>Long-Term Growth</h3>
+                <ul>
+                    <li>AI & Blockchain Integration 2.0</li>
+                    <li>Global DePIN Expansion</li>
+                    <li>Mainstream Adoption</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="faq-header">
+            <h2>Frequently Asked Questions</h2>
+        </div>
+        
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is Symmetry?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Symmetry is an AI-powered decentralized infrastructure built to optimize the performance, scalability, and security of blockchain networks. It integrates Artificial Intelligence (AI) to enhance network efficiency and uses the DePIN (Decentralized Physical Infrastructure Networks) model to enable users to participate in the network by managing decentralized nodes.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is the DePIN model?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>DePIN (Decentralized Physical Infrastructure Networks) is a unique model where users can contribute physical infrastructure (nodes) to the Symmetry network. By using the DePIN model, users help decentralize the network, enhance its scalability, and earn rewards in return. This model allows global participation in managing the underlying infrastructure of the platform.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How can I get $SYM tokens?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>$SYM tokens will be available during the initial token sale. Afterward, they can be traded on supported exchanges or earned by staking, leasing nodes, or participating in the platform's governance.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What is the $SYM token used for?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>The $SYM token is used for various functions within the Symmetry network, including staking, governance participation, paying transaction fees, leasing nodes, and rewarding developers and users for their contributions.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How does the governance system work?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Symmetry uses a Decentralized Autonomous Organization (DAO) for governance. $SYM token holders can propose and vote on key decisions, such as protocol upgrades, node management strategies, and ecosystem development. The more $SYM tokens you hold or stake, the greater your influence in shaping the future of the platform.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>What makes Symmetry different from other blockchain infrastructure projects?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Unlike traditional blockchain infrastructures, Symmetry combines AI-driven optimization and DePIN to create a highly scalable, efficient, and decentralized platform. The AI ensures the network adapts to real-time needs, while DePIN decentralizes the physical infrastructure, allowing global participants to contribute and earn rewards.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How can I get involved in the community?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Join the Symmetry community by following us on social media, participating in governance, and engaging with other users in our official channels like Telegram and Discord. You can also contribute to the ecosystem by developing dApps or offering feedback to improve the platform.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>How can I participate in governance?</h3>
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>You can participate in governance by staking $SYM tokens. This allows you to vote on proposals related to network upgrades, node management, and platform changes. Active token holders play a key role in shaping the direction of the Symmetry ecosystem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2025 Symmetry. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

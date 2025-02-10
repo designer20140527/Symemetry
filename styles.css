@@ -1,0 +1,2124 @@
+/* 引入Audiowide字体 - 放在CSS文件最顶部 */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
+:root {
+    --primary-dark: #0A0A0A;
+    --primary-light: #FFFFFF;
+    --accent-green: #00DC82;
+    --text-gray: #A1A1A1;
+    --gradient-dark: linear-gradient(180deg, #000000 0%, #0A0A0A 100%);
+    --gradient-light: linear-gradient(180deg, #FFFFFF 0%, #F5F5F5 100%);
+}
+
+/* 全局动画 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes headerTransition {
+    from {
+        background: var(--primary-dark);
+        color: var(--primary-light);
+        width: 0%;
+    }
+    to {
+        background: var(--primary-light);
+        color: var(--primary-dark);
+        width: 100%;
+    }
+}
+
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Sora', sans-serif;
+    background: var(--primary-dark);
+    color: var(--primary-light);
+    overflow-x: hidden;
+    margin: 0;  /* 显式设置body的margin为0 */
+}
+
+/* Header 基础样式 */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 72px;
+    background: var(--primary-dark);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    transition: all 0.5s ease;
+    padding: 8px 0;
+}
+
+.header-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* 动画遮罩层 */
+.header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-light);
+    transition: transform 0.5s ease;
+    z-index: -1;
+}
+
+.header.scrolled::after {
+    transform: translateX(100%);
+}
+
+/* Logo Styles */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: 24px;  /* 添加左侧padding */
+    height: 100%;  /* 保持高度100% */
+    min-width: 200px;  /* 保持最小宽度 */
+    border-right: 1px solid rgba(255, 255, 255, 0.1);  /* 保持右侧边框 */
+}
+
+.logo img {
+    height: 48px;  /* 增大logo尺寸 */
+    width: auto;
+}
+
+.logo-text {
+    font-family: 'Audiowide', cursive;
+    font-size: 24px;
+    color: var(--primary-light);
+    font-weight: 400;
+}
+
+/* 当页面滚动时logo文字颜色变化 */
+.header.scrolled .logo-text {
+    color: var(--primary-dark);
+}
+
+/* 导航菜单 */
+.nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.menu {
+    height: 100%;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu li {
+    height: 100%;
+    perspective: 1000px;
+}
+
+.menu a {
+    height: 100%;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    color: var(--primary-light);
+    text-decoration: none;
+    font-family: 'Sora', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+}
+
+/* 社交图标 */
+.social-icons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 24px;
+    height: 100%;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-icons .icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.social-icons .icon svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--primary-light);
+    transition: fill 0.3s ease;
+}
+
+.social-icons .icon img {
+    width: 24px;
+    height: 24px;
+    transition: opacity 0.3s ease;
+    filter: brightness(0) invert(1);  /* 将图标改为白色 */
+}
+
+/* Hover效果 */
+.social-icons .icon:hover svg {
+    fill: var(--accent-green);
+}
+
+.social-icons .icon:hover img {
+    opacity: 0.8;
+}
+
+/* 滚动状态 */
+.header.scrolled .social-icons svg {
+    fill: var(--primary-dark);
+}
+
+/* 滚动状态时改变颜色 */
+.header.scrolled .social-icons .icon img {
+    filter: brightness(0);  /* 滚动时改为黑色 */
+}
+
+/* Connect按钮 */
+.action-btn {
+    height: calc(100% - 16px);
+    margin: 8px 40px;
+    padding: 0 24px;
+    background: var(--primary-light) !important;
+    border: none;
+    border-radius: 8px;
+    color: var(--primary-dark) !important;
+    font-family: 'Sora', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+/* 滚动状态样式 */
+.header.scrolled .menu a {
+    color: var(--primary-dark);
+}
+
+.header.scrolled .action-btn {
+    background: var(--primary-dark) !important;
+    color: var(--primary-light) !important;
+    border: 1px solid var(--primary-dark);
+}
+
+/* Hover效果 */
+.menu a:hover {
+    transform: rotateX(360deg);
+}
+
+.action-btn:hover {
+    background: var(--accent-green) !important;
+    color: var(--primary-dark) !important;
+    transform: translateY(-1px);
+}
+
+/* 防止相邻元素受到影响 */
+.menu li:hover ~ li a {
+    transform: none;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    padding-top: 72px;
+    margin: 0;
+    background: var(--primary-dark);
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+/* 左侧文字 */
+.hero::before {
+    content: 'WHO WE ARE';
+    position: absolute;
+    left: 40px;
+    bottom: -8px;
+    font-family: 'Audiowide', cursive;
+    font-size: 14px;
+    color: var(--text-gray);
+    letter-spacing: 2px;
+    background: var(--primary-dark);
+    padding: 0 20px;
+    z-index: 5;
+}
+
+/* 顶部标语 */
+.hero-banner {
+    width: 100%;
+    padding: 20px 10px 10px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-banner h2 {
+    font-family: 'Audiowide', cursive;
+    font-size: 3.4vw;
+    font-weight: 400;
+    color: var(--primary-light);
+    text-align: center;
+    white-space: nowrap;
+    margin: 0 auto;
+    padding: 5px 5px;
+}
+
+/* 主要内容区域 */
+.hero-main {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    padding: 0;
+    box-sizing: border-box;
+    margin-top: 2rem;
+    margin-bottom: 24px;
+}
+
+/* 左侧内容 */
+.hero-left {
+    width: 60%;
+    padding: 0px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 右侧内容 */
+.hero-right {
+    width: 40%;
+    padding: 20px 24px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.hero-left h3 {
+    font-family: 'Audiowide', cursive;
+    font-size: 60px;
+    font-weight: 400;
+    color: var(--primary-light);
+    margin-bottom: 40px;
+}
+
+.hero-left-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.intro-icon {
+    width: 7%;
+    display: flex;
+    justify-content: center;
+    vertical-align:middle;
+    padding-top: 10px;
+}
+
+
+.intro-icon svg {
+    width: 75px;
+    height: 75px;
+    fill: var(--accent-green);
+    animation: rotate 10s linear infinite;
+}
+
+.intro-text {
+    width: 93%;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text-gray);
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 外层容器 */
+.hero-right-content {
+    margin-right: 0;  /* 移除右边距 */
+    position: relative;
+    padding: 1px;
+    border-radius: 24px;
+    background: linear-gradient(145deg, rgba(0, 220, 130, 0.3), rgba(0, 220, 130, 0.1));
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 220, 130, 0.4);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(0, 220, 130, 0.1);
+}
+
+/* 内层容器 */
+.hero-right-inner {
+    background-image: url('assets/images/image1.png');  /* 保留背景图 */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 23px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 内容遮罩 - 减轻遮罩深度 */
+.hero-right-inner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.4);  /* 减轻遮罩深度，从0.7改为0.4 */
+    border-radius: 23px;
+    z-index: 0;
+}
+
+/* 发光边框效果 */
+.hero-right-content::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background: linear-gradient(90deg, rgba(0, 220, 130, 0.6), rgba(35, 35, 35, 0.3), rgba(0, 220, 130, 0.6));  /* 更鲜艳的渐变 */
+    background-size: 200% 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Hover效果 */
+.hero-right-content:hover::before {
+    opacity: 1;
+    animation: borderGlow 2s linear infinite;
+}
+
+/* 内容层级调整 */
+.hero-right h3,
+.hero-right p,
+.run-node-btn {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-right h3 {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--primary-light);
+    margin-bottom: 24px;
+}
+
+.hero-right p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text-gray);
+    margin-bottom: 32px;
+}
+
+/* 运行节点按钮 */
+.run-node-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 28px;
+    background: var(--primary-light);  /* 改为白色背景 */
+    border: none;
+    border-radius: 12px;
+    color: var(--primary-dark);  /* 深色文字 */
+    font-family: 'Sora', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.run-node-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);  /* 白色阴影 */
+    background: var(--primary-light);  /* 保持白色背景 */
+}
+
+.run-node-btn .pointer {
+    font-size: 20px;
+}
+
+/* 特性卡片网格 */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    padding: 80px 40px;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 24px;
+    padding: 40px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* 按钮样式 */
+.action-btn {
+    background: var(--accent-green);
+    color: var(--primary-dark);
+    padding: 16px 32px;
+    border-radius: 12px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 220, 130, 0.2);
+}
+
+.logo img {
+    height: 40px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.buy-now {
+    padding: 12px 24px;
+    background: var(--accent-color);
+    border: none;
+    border-radius: 8px;
+    color: var(--primary-color);
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* About Section */
+.about {
+    padding: 40px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-header {
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.about-header h2 {
+    display: none;  /* 隐藏绿色的who we are */
+}
+
+.about-header h3 {
+    font-family: 'Audiowide', cursive;
+    font-size: 40px;
+    font-weight: 400;
+    color: var(--primary-light);
+    margin-left: 24px;  /* 减小左侧margin，与grid对齐 */
+}
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding: 0 24px;
+}
+
+.service-header {
+    margin-bottom: 0;  /* 移除底部margin */
+    position: relative;
+    z-index: 1;
+}
+
+.service-header h3 {
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--primary-light);
+    text-align: left;
+    margin-bottom: 16px;  /* 添加一个小的底部间距 */
+}
+
+.service-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    height: 250px;  /* 减小初始高度 */
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* 为每个卡片设置不同的背景图片 */
+.service-card:nth-child(1)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/images/image2.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    transition: opacity 0.5s ease;
+}
+
+.service-card:nth-child(2)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/images/image3.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    transition: opacity 0.5s ease;
+}
+
+.service-card:nth-child(3)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/images/image4.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    transition: opacity 0.5s ease;
+}
+
+.service-card:nth-child(4)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/images/image5.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    transition: opacity 0.5s ease;
+}
+
+/* 内容遮罩 - 减轻遮罩深度 */
+.service-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.4);  /* 从0.7改为0.4 */
+    transition: opacity 0.5s ease;
+}
+
+/* Hover效果时进一步减轻遮罩 */
+.service-card:hover::after {
+    background: rgba(10, 10, 10, 0.2);  /* hover时更透明 */
+}
+
+.service-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-gray);
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover效果 */
+.service-card:hover {
+    height: 350px;  /* 减小展开高度 */
+    transform: translateY(-5px) rotateX(5deg);  /* 添加3D效果 */
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent-green);  /* 边框变为绿色 */
+}
+
+.service-card:hover::before {
+    opacity: 0.3;
+    transform: scale(1.05);
+}
+
+.service-card:hover p {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Platform Section */
+.platform {
+    padding: 60px 0;
+    background: linear-gradient(180deg, 
+        rgba(0, 220, 130, 0.05) 0%,
+        rgba(10, 10, 10, 0) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.platform h2 {
+    font-family: 'Audiowide', cursive;
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--primary-light);
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.platform-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding: 0 24px;
+}
+
+.platform-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    transition: all 0.3s ease;
+}
+
+.platform-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-5px);
+}
+
+.platform-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 24px;
+}
+
+.platform-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--accent-green);
+}
+
+.platform-card h3 {
+    font-family: 'Audiowide', cursive;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--primary-light);
+    margin-bottom: 20px;
+}
+
+.platform-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-gray);
+}
+
+/* Service Section */
+.service {
+    padding: 80px 24px;
+}
+
+.service-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.layers-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+}
+
+.layer-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 32px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.layer-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.layer-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary-light);
+    margin: 24px 0 20px;
+}
+
+.layer-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.layer-card li {
+    color: var(--text-gray);
+    font-size: 16px;
+    line-height: 1.8;
+    position: relative;
+    padding-left: 20px;
+}
+
+.layer-card li::before {
+    content: '•';
+    color: var(--accent-green);
+    position: absolute;
+    left: 0;
+}
+
+/* Platform Stats */
+.platform-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    max-width: 1000px;
+    margin: 60px auto;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-item h3 {
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--accent-green);
+    margin-bottom: 12px;
+}
+
+.stat-item p {
+    font-size: 16px;
+    color: var(--text-gray);
+    margin: 0;
+}
+
+.platform-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 16px 32px;
+    background: var(--accent-green);
+    border: none;
+    border-radius: 12px;
+    color: var(--primary-dark);
+    font-family: 'Sora', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.platform-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 220, 130, 0.2);
+}
+
+/* Features Section */
+.features {
+    padding: 120px 24px;
+    background: var(--primary-dark);
+}
+
+.features-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 80px;
+}
+
+.features-header h2 {
+    font-size: 48px;
+    font-weight: 600;
+    color: var(--primary-light);
+    margin-bottom: 24px;
+}
+
+.features-header p {
+    font-size: 20px;
+    color: var(--text-gray);
+    line-height: 1.6;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 24px;
+}
+
+.feature-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--accent-green);
+}
+
+/* Technology Section Styles */
+.tech-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* 2x2 网格布局 */
+    gap: 40px;
+    padding: 0 24px;
+}
+
+.tech-feature-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    transition: all 0.3s ease;
+}
+
+.tech-feature-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-5px);
+    border-color: var(--accent-green);
+}
+
+.tech-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 24px;
+}
+
+.tech-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--accent-green);
+}
+
+.tech-feature-card h3 {
+    font-family: 'Audiowide', cursive;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--primary-light);
+    margin-bottom: 20px;
+}
+
+.tech-feature-card p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-gray);
+}
+
+/* 为每个卡片添加独特的hover效果 */
+.tech-feature-card:hover .tech-icon svg {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Tokenomics Section */
+.tokenomics {
+    padding: 100px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tokenomics-header {
+    margin-bottom: 60px;
+}
+
+.tokenomics-header h2 {
+    font-family: 'Audiowide', cursive;
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--primary-light);
+    margin-bottom: 24px;
+}
+
+.tokenomics-header p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--text-gray);
+    max-width: 800px;
+}
+
+/* Token Basic Info */
+.token-basics {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 60px;
+}
+
+.token-basic-card {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 32px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.token-basic-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-5px);
+    border-color: var(--accent-green);
+}
+
+.token-basic-card h3 {
+    font-size: 20px;
+    color: var(--text-gray);
+    margin-bottom: 16px;
+}
+
+.token-basic-card .token-value {
+    font-family: 'Audiowide', cursive;
+    font-size: 32px;
+    color: var(--accent-green);
+}
+
+/* Token Distribution */
+.token-distribution {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+    margin-top: 80px;
+    margin-bottom: 60px;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+/* 调整标题样式，与其他主标题保持一致 */
+.token-distribution h3 {
+    font-family: 'Audiowide', cursive;
+    font-size: 40px;
+    font-weight: 400;
+    color: var(--primary-light);
+    margin-bottom: 30px;
+    grid-column: 1 / -1;
+}
+
+.token-chart {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+/* 增加图片大小并添加浮动动画 */
+.token-chart img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    animation: floating 3s ease-in-out infinite;
+}
+
+/* 浮动动画 - 优化使其更流畅 */
+@keyframes floating {
+    0% {
+        transform: translateY(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-10px) scale(1.01);
+    }
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+}
+
+/* 优化其他动画效果 */
+.service-card {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.utility-card,
+.tech-feature-card,
+.benefit-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.run-node-btn,
+.action-btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 移除之前添加的一些生硬的动画效果 */
+.utility-card::after,
+.tech-feature-card::after,
+.benefit-card::after {
+    display: none;
+}
+
+.run-node-btn::before,
+.action-btn::before {
+    display: none;
+}
+
+/* 图例部分调整 */
+.distribution-legend {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;  /* 增加间距 */
+    align-content: flex-start;
+    margin-top: 20px;  /* 增加与图片的间距 */
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.legend-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(5px);
+    border-color: var(--accent-green);
+}
+
+.legend-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+}
+
+.legend-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.legend-label {
+    font-size: 14px;
+    color: var(--text-gray);
+}
+
+.legend-value {
+    font-family: 'Audiowide', cursive;
+    font-size: 18px;
+    color: var(--accent-green);
+}
+
+/* Token Utilities */
+.token-utilities {
+    margin-top: 60px;
+}
+
+.token-utilities h3 {
+    font-family: 'Audiowide', cursive;
+    font-size: 32px;
+    color: var(--primary-light);
+    margin-bottom: 40px;
+}
+
+.utilities-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.utility-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 32px;
+    transition: all 0.3s ease;
+}
+
+.utility-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-5px);
+    border-color: var(--accent-green);
+}
+
+.utility-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 24px;
+}
+
+.utility-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--accent-green);
+}
+
+.utility-card h4 {
+    font-family: 'Audiowide', cursive;
+    font-size: 24px;
+    color: var(--primary-light);
+    margin-bottom: 16px;
+}
+
+.utility-card p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-gray);
+}
+
+/* 响应式调整 */
+@media screen and (max-width: 1024px) {
+    .token-distribution {
+        grid-template-columns: 1fr;
+    }
+    
+    .token-chart img {
+        max-width: 350px;  /* 平板尺寸稍微减小 */
+    }
+    
+    .utilities-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .token-chart img {
+        max-width: 300px;  /* 手机尺寸进一步减小 */
+    }
+}
+
+/* Roadmap Section Styles */
+.roadmap {
+    padding: 120px 0;
+}
+
+.roadmap-header {
+    max-width: none;
+    margin: 0 0 60px 0;
+}
+
+.roadmap-header p {
+    max-width: none;
+    margin: 0 auto;
+    color: var(--text-gray);
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.timeline {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);  /* 改为5列以适应5个阶段 */
+    gap: 24px;
+    padding: 0 24px;
+}
+
+.phase {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 32px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.phase-number {
+    position: absolute;
+    top: -16px;
+    left: 32px;
+    background: var(--accent-green);
+    color: var(--primary-dark);
+    padding: 6px 16px;
+    border-radius: 12px;
+    font-family: 'Audiowide', cursive;
+    font-size: 14px;
+}
+
+.phase h3 {
+    font-size: 22px;
+    margin: 16px 0 24px;
+}
+
+.phase ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.phase li {
+    color: var(--text-gray);
+    font-size: 15px;
+    line-height: 1.8;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.phase li::before {
+    content: '•';
+    color: var(--accent-green);
+    position: absolute;
+    left: 0;
+}
+
+/* FAQ Section Styles */
+.faq {
+    padding: 120px 0;
+}
+
+.faq-header {
+    max-width: none;
+    margin: 0 0 60px 0;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    padding: 0 24px;
+}
+
+.faq-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 32px;
+    transition: all 0.3s ease;
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 0;
+}
+
+.faq-question h3 {
+    font-size: 20px;
+    line-height: 1.4;
+    padding-right: 40px;
+}
+
+.toggle-icon {
+    color: var(--accent-green);
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.faq-answer p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-gray);
+    margin: 24px 0 0;
+}
+
+.faq-item.active .toggle-icon {
+    transform: rotate(45deg);
+}
+
+.faq-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.faq-item:hover .faq-question h3 {
+    color: var(--accent-green);
+}
+
+/* 统一各section的间距 */
+.about, .platform, .service, .features, .tokenomics, .roadmap, .faq {
+    padding: 60px 0;  /* 减小所有section的上下padding */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 统一标题样式 */
+.section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.section-header h2 {
+    font-size: 48px;
+    font-weight: 600;
+    color: var(--primary-light);
+    margin-bottom: 24px;
+}
+
+.section-header p {
+    font-size: 20px;
+    color: var(--text-gray);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* 统一所有heading字体为Audiowide */
+h1, h2, h3, h4, h5, h6,
+.platform h2,
+.service-header h2,
+.features-header h2,
+.tech-header h2,
+.tokenomics-header h2,
+.roadmap-header h2,
+.faq-header h2,
+.service-card h3,
+.layer-card h3,
+.feature-card h3,
+.tech-feature-card h3,
+.phase h3,
+.faq-question h3 {
+    font-family: 'Audiowide', cursive;
+    font-weight: 400;
+}
+
+/* Why Choose Section */
+.why-choose {
+    padding: 40px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.why-choose .box-container {
+    margin-bottom: 25px;  /* 将底部外边距调整为25px */
+}
+
+.why-choose h2 {
+    font-family: 'Audiowide', cursive;
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--primary-light);
+    margin-bottom: 40px;  /* 将标题的底部间距也适当调整 */
+    text-align: center;
+}
+
+.benefits-grid {
+    display: flex;
+    gap: 40px;
+    padding: 0 24px;
+    width: calc(400% / 3);  /* 让容器宽度能容纳4个卡片，但只显示3个 */
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: grab;
+}
+
+.benefit-card {
+    flex: 1;
+    min-width: calc((100% - 80px) / 4);  /* 4个卡片等宽 */
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    transition: all 0.3s ease;
+}
+
+/* Tokenomics Section */
+.tokenomics {
+    padding: 100px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tokenomics-header {
+    margin-bottom: 60px;
+}
+
+.tokenomics-header h2 {
+    font-family: 'Audiowide', cursive;
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--primary-light);
+    margin-bottom: 24px;
+}
+
+.tokenomics-header p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--text-gray);
+    max-width: 800px;
+}
+
+/* Token Basic Info */
+.token-basics {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 60px;
+}
+
+.token-basic-card {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 32px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.token-basic-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-5px);
+    border-color: var(--accent-green);
+}
+
+.token-basic-card h3 {
+    font-size: 20px;
+    color: var(--text-gray);
+    margin-bottom: 16px;
+}
+
+.token-basic-card .token-value {
+    font-family: 'Audiowide', cursive;
+    font-size: 32px;
+    color: var(--accent-green);
+}
+
+/* Token Distribution */
+.token-distribution {
+    position: relative;
+}
+
+.token-chart {
+    position: relative;
+}
+
+.token-chart::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(0, 220, 130, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.legend-item {
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 220, 130, 0.1);
+}
+
+.legend-item:hover {
+    border-color: var(--accent-green);
+    box-shadow: 0 0 20px rgba(0, 220, 130, 0.1);
+}
+
+/* 图例部分调整 */
+.distribution-legend {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;  /* 增加间距 */
+    align-content: flex-start;
+    margin-top: 20px;  /* 增加与图片的间距 */
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.legend-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(5px);
+    border-color: var(--accent-green);
+}
+
+.legend-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+}
+
+.legend-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.legend-label {
+    font-size: 14px;
+    color: var(--text-gray);
+}
+
+.legend-value {
+    font-family: 'Audiowide', cursive;
+    font-size: 18px;
+    color: var(--accent-green);
+}
+
+/* Token Utilities */
+.token-utilities {
+    margin-top: 60px;
+}
+
+.token-utilities h3 {
+    font-family: 'Audiowide', cursive;
+    font-size: 32px;
+    color: var(--primary-light);
+    margin-bottom: 40px;
+}
+
+.utilities-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.utility-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 32px;
+    transition: all 0.3s ease;
+}
+
+.utility-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-5px);
+    border-color: var(--accent-green);
+}
+
+.utility-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 24px;
+}
+
+.utility-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--accent-green);
+}
+
+.utility-card h4 {
+    font-family: 'Audiowide', cursive;
+    font-size: 24px;
+    color: var(--primary-light);
+    margin-bottom: 16px;
+}
+
+.utility-card p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text-gray);
+}
+
+/* 响应式优化 */
+@media screen and (max-width: 1024px) {
+    .hero-banner h2 {
+        font-size: 4vw;
+    }
+    
+    .service-card {
+        height: 220px;
+    }
+    
+    .service-card:hover {
+        height: 320px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero-banner h2 {
+        font-size: 5vw;
+    }
+    
+    .service-card {
+        height: 200px;
+    }
+    
+    .service-card:hover {
+        height: 300px;
+    }
+}
+
+/* Footer Styles */
+.footer {
+    position: relative;
+    padding: 24px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);  /* 与其他分隔线保持一致 */
+}
+
+.footer-content {
+    padding: 0 24px;  /* 与其他section保持一致的左右间距 */
+}
+
+.footer p {
+    color: var(--text-gray);
+    font-size: 14px;
+    text-align: left;
+    margin: 0;
+    font-family: 'Sora', sans-serif;
+}
+
+/* 确保平滑滚动 */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;  /* 考虑固定header高度 */
+}
+
+/* 调整section的scroll-margin-top以适应固定header */
+#introduction,
+#technology,
+#tokenomics,
+#roadmap {
+    scroll-margin-top: 80px;  /* header高度 + 一些额外空间 */
+}
+
+/* 调整Hero Section的margin-top */
+.hero {
+    height: 70vh;
+    padding: 72px 0 0;  /* 移除左右padding，由内部元素控制 */
+    margin-top: 0;
+    background: var(--primary-dark);
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+/* 调整section的scroll-margin-top */
+#top {
+    scroll-margin-top: 0;  /* Home滚动到最顶部 */
+}
+
+#introduction,
+#technology,
+#tokenomics,
+#roadmap {
+    scroll-margin-top: 100px;  /* 增加间距，确保内容完全可见 */
+}
+
+/* 平板电脑 (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+    /* Hero Section */
+    .hero {
+        height: auto;
+        min-height: 50vh;
+        padding: 90px 20px 0;
+    }
+
+    .hero-banner h2 {
+        font-size: 24px;  /* 改用固定字体大小 */
+        padding: 10px;
+        white-space: normal;  /* 允许换行 */
+    }
+
+    .hero-main {
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 16px;
+        margin-bottom: 20px;
+    }
+
+    .hero-left, .hero-right {
+        width: 100%;
+        padding: 0;
+    }
+
+    .hero-left h3 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .intro-text {
+        font-size: 16px;
+    }
+
+    /* About Section */
+    .about-header h3 {
+        font-size: 32px;
+    }
+
+    /* 其他section标题 */
+    .tech-header h2,
+    .tokenomics-header h2,
+    .roadmap-header h2,
+    .faq-header h2 {
+        font-size: 32px;
+    }
+
+    /* 卡片标题 */
+    .service-card h3,
+    .tech-feature-card h3,
+    .utility-card h4 {
+        font-size: 20px;
+    }
+
+    /* 导航栏 */
+    .header-container {
+        padding: 0 16px;
+    }
+
+    .menu {
+        display: none;  /* 在移动端隐藏菜单，后续可以添加汉堡菜单 */
+    }
+
+    .social-icons {
+        padding: 0 16px;
+    }
+}
+
+/* 手机 (小于768px) */
+@media screen and (max-width: 767px) {
+    /* Hero Section */
+    .hero {
+        padding: 80px 16px 0;
+    }
+
+    .hero-banner h2 {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+    .hero-left h3 {
+        font-size: 28px;
+    }
+
+    .hero-left-content {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .intro-icon {
+        width: 40px;
+        height: 40px;
+        margin: 0 auto;
+    }
+
+    .intro-text {
+        width: 100%;
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    /* 右侧内容 */
+    .hero-right-inner {
+        padding: 20px;
+    }
+
+    .hero-right h3 {
+        font-size: 22px;
+        margin-bottom: 16px;
+    }
+
+    .hero-right p {
+        font-size: 15px;
+        margin-bottom: 24px;
+    }
+
+    .run-node-btn {
+        font-size: 15px;
+        padding: 12px 24px;
+    }
+
+    /* About Section */
+    .about-header h3 {
+        font-size: 28px;
+    }
+
+    /* 其他section标题 */
+    .tech-header h2,
+    .tokenomics-header h2,
+    .roadmap-header h2,
+    .faq-header h2 {
+        font-size: 28px;
+    }
+
+    /* 卡片标题和内容 */
+    .service-card h3,
+    .tech-feature-card h3,
+    .utility-card h4 {
+        font-size: 18px;
+    }
+
+    .service-card p,
+    .tech-feature-card p,
+    .utility-card p,
+    .faq-answer p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* FAQ问题 */
+    .faq-question h3 {
+        font-size: 16px;
+    }
+
+    /* Roadmap */
+    .phase h3 {
+        font-size: 18px;
+    }
+
+    .phase li {
+        font-size: 14px;
+    }
+
+    /* About Section */
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    /* Technology Section */
+    .tech-features {
+        grid-template-columns: 1fr;
+    }
+
+    /* Tokenomics Section */
+    .utilities-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .token-basics {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Roadmap Section */
+    .timeline {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    /* FAQ Section */
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Header调整 */
+    .logo-text {
+        display: none;  /* 在手机端隐藏logo文字 */
+    }
+
+    .action-btn {
+        padding: 0 16px;
+        margin: 8px 16px;
+    }
+}
+
+/* 确保在较小的手机上也能正常显示 */
+@media screen and (max-width: 375px) {
+    .hero-banner h2 {
+        font-size: 18px;
+    }
+
+    .hero-left h3 {
+        font-size: 24px;
+    }
+
+    .hero-right h3 {
+        font-size: 20px;
+    }
+
+    /* 所有section标题 */
+    .about-header h3,
+    .tech-header h2,
+    .tokenomics-header h2,
+    .roadmap-header h2,
+    .faq-header h2 {
+        font-size: 24px;
+    }
+
+    /* 调整按钮大小 */
+    .run-node-btn,
+    .action-btn {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+
+/* 统一所有主标题大小 */
+.about-header h3,
+.tech-header h2,
+.tokenomics-header h2,
+.roadmap-header h2,
+.faq-header h2,
+.why-choose h2 {
+    font-family: 'Audiowide', cursive;
+    font-size: 40px;  /* 统一标题大小 */
+    font-weight: 400;
+    color: var(--primary-light);
+    margin-bottom: 30px;  /* 统一底部间距 */
+}
+
+/* 统一所有header的margin */
+.about-header,
+.tech-header,
+.tokenomics-header,
+.roadmap-header,
+.faq-header {
+    margin-bottom: 40px;  /* 减小header的底部margin */
+    padding: 0 24px;
+}
+
+/* 调整卡片标题大小 */
+.service-card h3,
+.tech-feature-card h3,
+.benefit-card h3,
+.utility-card h4 {
+    font-size: 24px;  /* 统一卡片标题大小 */
+    margin-bottom: 16px;
+}
+
+/* 调整卡片间距 */
+.services-grid,
+.tech-features,
+.benefits-grid,
+.utilities-grid {
+    gap: 24px;  /* 统一网格间距 */
+    padding: 0 24px;
+}
+
+/* 调整section之间的分隔线 */
+.hero,
+.about,
+.platform,
+.service,
+.features,
+.tokenomics,
+.roadmap,
+.faq {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 移除多余的margin和padding */
+.token-info-container,
+.timeline,
+.faq-grid {
+    margin: 0;
+    padding: 0 24px;
+}
+
+/* Technology Section 调整 */
+.tech-section {
+    margin-top: 60px;  /* 增加上方间距 */
+    padding: 60px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tech-header {
+    text-align: left;
+    padding: 0 24px;
+    margin-bottom: 40px;
+}
+
+/* 全局滚动效果 */
+.section-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 按钮效果优化 */
+.run-node-btn,
+.action-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.run-node-btn::before,
+.action-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.run-node-btn:hover::before,
+.action-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* 卡片效果优化 */
+.utility-card,
+.tech-feature-card,
+.benefit-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.utility-card::after,
+.tech-feature-card::after,
+.benefit-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent 65%, rgba(0, 220, 130, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.utility-card:hover::after,
+.tech-feature-card:hover::after,
+.benefit-card:hover::after {
+    opacity: 1;
+} 
