@@ -686,6 +686,7 @@ body {
         rgba(0, 220, 130, 0.05) 0%,
         rgba(10, 10, 10, 0) 100%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
 }
 
 .platform h2 {
@@ -1060,8 +1061,8 @@ body {
 
 /* 增加图片大小并添加浮动动画 */
 .token-chart img {
-    width: 100%;
-    max-width: 500px;
+    width: 90%;
+    max-width: 450px;
     height: auto;
     animation: floating 3s ease-in-out infinite;
 }
@@ -1451,14 +1452,13 @@ h1, h2, h3, h4, h5, h6,
     display: flex;
     gap: 40px;
     padding: 0 24px;
-    width: calc(400% / 3);  /* 让容器宽度能容纳4个卡片，但只显示3个 */
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: grab;
+    width: calc(400% / 3);
+    animation: slideCards 30s linear infinite;  /* 增加动画时长，使用linear确保匀速 */
 }
 
 .benefit-card {
     flex: 1;
-    min-width: calc((100% - 80px) / 4);  /* 4个卡片等宽 */
+    min-width: calc((100% - 80px) / 4);
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px;
@@ -1466,197 +1466,170 @@ h1, h2, h3, h4, h5, h6,
     transition: all 0.3s ease;
 }
 
-/* Tokenomics Section */
-.tokenomics {
-    padding: 100px 24px;
+/* 优化滑动动画 */
+@keyframes slideCards {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-100%));  /* 简化关键帧，实现匀速滑动 */
+    }
+}
+
+/* 优化鼠标悬停效果 */
+.benefits-grid:hover {
+    animation-play-state: paused;
+    transition: all 0.3s ease;  /* 添加过渡效果使暂停更平滑 */
+}
+
+/* 响应式调整 */
+@media screen and (max-width: 768px) {
+    .benefits-grid {
+        width: calc(400% / 2);
+    }
+    
+    .benefit-card {
+        min-width: calc((100% - 40px) / 4);
+    }
+}
+
+/* 统一所有主标题大小 */
+.about-header h3,
+.tech-header h2,
+.tokenomics-header h2,
+.roadmap-header h2,
+.faq-header h2,
+.why-choose h2 {
+    font-family: 'Audiowide', cursive;
+    font-size: 40px;  /* 统一标题大小 */
+    font-weight: 400;
+    color: var(--primary-light);
+    margin-bottom: 30px;  /* 统一底部间距 */
+}
+
+/* 统一所有header的margin */
+.about-header,
+.tech-header,
+.tokenomics-header,
+.roadmap-header,
+.faq-header {
+    margin-bottom: 40px;  /* 减小header的底部margin */
+    padding: 0 24px;
+}
+
+/* 调整卡片标题大小 */
+.service-card h3,
+.tech-feature-card h3,
+.benefit-card h3,
+.utility-card h4 {
+    font-size: 24px;  /* 统一卡片标题大小 */
+    margin-bottom: 16px;
+}
+
+/* 调整卡片间距 */
+.services-grid,
+.tech-features,
+.benefits-grid,
+.utilities-grid {
+    gap: 24px;  /* 统一网格间距 */
+    padding: 0 24px;
+}
+
+/* 调整section之间的分隔线 */
+.hero,
+.about,
+.platform,
+.service,
+.features,
+.tokenomics,
+.roadmap,
+.faq {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.tokenomics-header {
-    margin-bottom: 60px;
+/* 移除多余的margin和padding */
+.token-info-container,
+.timeline,
+.faq-grid {
+    margin: 0;
+    padding: 0 24px;
 }
 
-.tokenomics-header h2 {
-    font-family: 'Audiowide', cursive;
-    font-size: 48px;
-    font-weight: 400;
-    color: var(--primary-light);
-    margin-bottom: 24px;
+/* Technology Section 调整 */
+.tech-section {
+    margin-top: 60px;  /* 增加上方间距 */
+    padding: 60px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.tokenomics-header p {
-    font-size: 18px;
-    line-height: 1.8;
-    color: var(--text-gray);
-    max-width: 800px;
-}
-
-/* Token Basic Info */
-.token-basics {
-    display: flex;
-    gap: 24px;
-    margin-bottom: 60px;
-}
-
-.token-basic-card {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    padding: 32px;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.token-basic-card:hover {
-    background: rgba(255, 255, 255, 0.05);
-    transform: translateY(-5px);
-    border-color: var(--accent-green);
-}
-
-.token-basic-card h3 {
-    font-size: 20px;
-    color: var(--text-gray);
-    margin-bottom: 16px;
-}
-
-.token-basic-card .token-value {
-    font-family: 'Audiowide', cursive;
-    font-size: 32px;
-    color: var(--accent-green);
-}
-
-/* Token Distribution */
-.token-distribution {
-    position: relative;
-}
-
-.token-chart {
-    position: relative;
-}
-
-.token-chart::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at center, rgba(0, 220, 130, 0.1) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-.legend-item {
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(0, 220, 130, 0.1);
-}
-
-.legend-item:hover {
-    border-color: var(--accent-green);
-    box-shadow: 0 0 20px rgba(0, 220, 130, 0.1);
-}
-
-/* 图例部分调整 */
-.distribution-legend {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;  /* 增加间距 */
-    align-content: flex-start;
-    margin-top: 20px;  /* 增加与图片的间距 */
-}
-
-.legend-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    transition: all 0.3s ease;
-}
-
-.legend-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    transform: translateX(5px);
-    border-color: var(--accent-green);
-}
-
-.legend-color {
-    width: 24px;
-    height: 24px;
-    border-radius: 6px;
-}
-
-.legend-text {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.legend-label {
-    font-size: 14px;
-    color: var(--text-gray);
-}
-
-.legend-value {
-    font-family: 'Audiowide', cursive;
-    font-size: 18px;
-    color: var(--accent-green);
-}
-
-/* Token Utilities */
-.token-utilities {
-    margin-top: 60px;
-}
-
-.token-utilities h3 {
-    font-family: 'Audiowide', cursive;
-    font-size: 32px;
-    color: var(--primary-light);
+.tech-header {
+    text-align: left;
+    padding: 0 24px;
     margin-bottom: 40px;
 }
 
-.utilities-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+/* 全局滚动效果 */
+.section-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.utility-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    padding: 32px;
-    transition: all 0.3s ease;
+.section-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.utility-card:hover {
-    background: rgba(255, 255, 255, 0.05);
-    transform: translateY(-5px);
-    border-color: var(--accent-green);
+/* 按钮效果优化 */
+.run-node-btn,
+.action-btn {
+    position: relative;
+    overflow: hidden;
 }
 
-.utility-icon {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 24px;
+.run-node-btn::before,
+.action-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
 }
 
-.utility-icon svg {
-    width: 100%;
-    height: 100%;
-    fill: var(--accent-green);
+.run-node-btn:hover::before,
+.action-btn:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
-.utility-card h4 {
-    font-family: 'Audiowide', cursive;
-    font-size: 24px;
-    color: var(--primary-light);
-    margin-bottom: 16px;
+/* 卡片效果优化 */
+.utility-card,
+.tech-feature-card,
+.benefit-card {
+    position: relative;
+    overflow: hidden;
 }
 
-.utility-card p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: var(--text-gray);
+.utility-card::after,
+.tech-feature-card::after,
+.benefit-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent 65%, rgba(0, 220, 130, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.utility-card:hover::after,
+.tech-feature-card:hover::after,
+.benefit-card:hover::after {
+    opacity: 1;
 }
 
 /* 响应式优化 */
@@ -2023,7 +1996,7 @@ html {
 .benefits-grid,
 .utilities-grid {
     gap: 24px;  /* 统一网格间距 */
-    padding: 0 24px;
+    padding: 0 0px;
 }
 
 /* 调整section之间的分隔线 */
